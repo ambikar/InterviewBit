@@ -1,0 +1,73 @@
+package exercise;
+
+import java.util.Arrays;
+
+public class TestExercise {
+	
+	public static void main(String[] args){
+		
+		String input = "aabbbcdddd";
+		String output = "";
+		char ctr = input.charAt(0);
+		int counter = 1;
+		for(int i=1; i<input.length(); i++){
+			
+			if(input.charAt(i)==ctr){
+				counter++;
+			}else
+			{
+				output +=ctr + "" +counter;
+				ctr = input.charAt(i);
+				counter =1;
+			}
+			
+		}
+		
+		System.out.println(output +ctr +counter);
+		
+		TestExercise test = new TestExercise();
+		System.out.println(test.charCount("aabbbcdddd"));
+		System.out.println(test.isAnagram("kwep", "peek"));
+	}
+
+
+private String charCount(String input) {
+		
+	String output = "";
+	
+	char ctr = input.charAt(0);
+	int counter =1;
+	
+	for(int i=1; i<input.length(); i++){
+		if(input.charAt(i) == ctr)
+			counter++;
+		
+		else {
+			output +=ctr + "" +counter;
+			ctr = input.charAt(i);
+			counter =1;
+		}
+	}
+		return output+ctr+counter;
+	}
+
+
+private boolean isAnagram(String a, String b){
+	 boolean status =false;
+	 
+	 	if(a.length()!=b.length())
+	 		return false;
+	
+	 	else{
+	 		char[]  test = a.toLowerCase().toCharArray();
+	 		char[] test1 = b.toLowerCase().toCharArray();
+	 		
+	 		Arrays.sort(test);
+	 		Arrays.sort(test1);
+	 		
+	 		status = Arrays.equals(test, test1);
+	 	}
+	 	
+	return status;
+}
+}
