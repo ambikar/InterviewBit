@@ -1,0 +1,63 @@
+package test.test1;
+
+public class Test{
+
+	public static void main(String args[]) {
+		Test test = new Test();
+		 int array[][] = 
+			   { {10, 20, 15},
+			     {21, 30, 14},
+			     {7 , 16, 32}};
+		System.out.println(test.getPeak(array, 0,-1));
+	}
+
+	private int getPeak(int[][] array, int left, int right)
+     {
+		if (array.length <= 0) return 0;
+		if (right == -1) right = array[0].length;
+		
+		int column = (right+left)/2;
+		int 	globalMax = this.globalMax(array, column);
+		
+		if(globalMax-1 >0 && array[globalMax][column]
+				>= array[globalMax-1][column] &&
+		(globalMax+1 < array.length && array[globalMax][column]
+				>= array[globalMax+1][column]) &&
+		(column -1 >=0 && array[globalMax][column] 
+				>= array[globalMax][column-1]) &&
+		(column+1 < array[0].length && array[globalMax][column]
+				>= array[globalMax][column+1])) {
+			return array[globalMax][column];
+		}
+		
+		else if (column > 0 && 
+				array[globalMax][column - 1] > array[globalMax][column])
+        {
+            right = column;
+            return getPeak(array, left, right);
+        }
+        else if (column + 1 < array[globalMax].length &&
+        			array[globalMax][column + 1] > array[globalMax][column])
+        {
+            left = column;
+            return getPeak(array, left, right);
+        }
+
+        return array[globalMax][column];
+    }
+		
+
+	private int globalMax(int[][] array, int j) {
+		int max =0;
+		int index =0;
+		for(int i=0; i< array.length; i++) {
+			if(max < array[i][j])
+			{
+				max = array[i][j];
+				index = i;
+			}
+		}
+		return index;
+	}
+}
+	
