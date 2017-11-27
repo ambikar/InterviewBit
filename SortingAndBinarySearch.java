@@ -32,15 +32,16 @@ public class TestExercise {
 		System.out.println("Array sorted based on selection sort is "+ Arrays.toString(array));
 		
 		//Insertion sort
-	       for(int i=1; i<array.length; i++){
-	    	   for(int j=i;j>0; j--){
-	    		   if(array[j]>array[i]){
-	    			   int temp = array[i];
-						  array[i]=array[j];
-						  array[j]=temp;
-	    		   }
-	    	   }
-	       }
+	       
+		 for(int i=1; i< array.length; i++) {
+			 for(int j=0; j <i; j++) {
+				if(array[j]> array[i]) {
+					int temp = array[i];
+					array[i] = array[j];
+					array[j] = temp;
+				 }
+			 }
+		 }
 	        System.out.println("Array sorted based on insertion sort is "+ Arrays.toString(array));
 	        
 	        //bubble sort
