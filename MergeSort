@@ -1,0 +1,74 @@
+package test.test1;
+
+import java.util.Arrays;
+
+public class MergeSort{
+
+	public static void main(String args[]) {
+		MergeSort sort = new MergeSort();
+		int[] array = {13,55,44,23,1,87,21};
+		
+		sort.sort(array, 0, array.length-1);
+		
+		for(int i =0; i< array.length; i++) {
+			System.out.print(array[i] + " ");
+		}
+	}
+	
+	private void sort(int[] array, int left, int right) {
+		
+	if(left < right) {
+		int mid = (right + left)/2;
+
+		sort(array, left, mid);
+		sort(array, mid+1, right);
+		merge(array, left, mid, right);
+	}
+	}
+	
+	private void merge(int[] array, int left, int mid, int right) {
+		int[] array1 = new int[(mid-left) +1];
+		int[] array2 = new int[right-mid];
+		
+		for(int i = 0; i< array1.length; i++) {
+			array1[i] = array[left+ i];
+		}
+		
+		for(int j = 0; j< array2.length; j++) {
+			array2[j] = array[(mid+1) + j];
+			
+		}
+	
+		int k = left; int i=0; int j=0;
+		
+		while(i< array1.length && j< array2.length) {
+			if(array1[i]<= array2[j]) {
+				array[k] = array1[i];
+				i++;
+			}
+			else {
+				array[k] = array2[j];
+				j++;
+			}
+			k++;
+		}
+		
+		while(i< array1.length) {
+			array[k] = array1[i];
+			i++;
+			k++;
+		}
+		
+		
+		while(j< array2.length) {
+			array[k] = array2[j];
+			j++;
+			k++;
+		}
+		
+	}
+	
+	}		
+	
+
+	
