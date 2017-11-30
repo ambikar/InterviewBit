@@ -1,0 +1,165 @@
+package test.test1;
+
+public class BinaryTree {
+	
+	public static void main(String args[]) {
+	Tree tree = new Tree();
+	tree.insert(34);
+	tree.insert(22);
+	tree.insert(13);
+	
+	tree.print();
+	
+	}
+}
+
+class TreeNode{
+	int data;
+	TreeNode left;
+	TreeNode right;
+}
+
+class Tree{
+	TreeNode root;
+	
+	public Tree() {
+		root = null;
+	}
+	
+	public void insert(int data) {
+		TreeNode newNode = new TreeNode();
+		newNode.data = data;
+		TreeNode parent;
+		
+		if(root == null) {
+			root = newNode;
+		}
+		
+		while(true) {
+			TreeNode current = root;
+			parent = current;
+			if(data < current.data) {
+				current = current.left;
+				if(current == null) {
+					parent.left = newNode;
+				}
+			}
+			else {
+				current = current.right;
+				if(current== null) {
+					parent.right = current;
+				}
+			}
+		}
+	}
+	
+	
+	public TreeNode find(int key) {
+		TreeNode current = root;
+		
+		while(current.data!=key) {
+			if(key< root.data)
+				current = root.left;
+			else 
+				current = root.right;
+			
+			if(current == null){
+				return null;
+			}
+		}
+		return current;
+	}
+	
+	public boolean deleteLeaf(int key) {
+		TreeNode current = root;
+		TreeNode parent = root;
+		
+		boolean isDeleted = true;
+		
+		while(current.data != key) {
+			parent= current;
+			if(current.data < key) {
+				isDeleted = true;
+				current = current.left;
+			}
+			else {
+				isDeleted = false;
+				current = current.right;
+			}
+			if(current == null) {
+				return false;
+			}
+		}
+		
+		if(current.left ==null && current.right == null) {
+			parent.left = null;	
+		}
+		else parent.right = null;
+		return isDeleted;	
+	}
+	
+	public TreeNode minimum() 
+	{
+	TreeNode current, last = null;
+	current = root; 
+		while(current != null) 
+		{
+			last = current; 
+			current = current.left;
+		}
+		return last;
+	}
+	
+	public TreeNode maximum() 
+	{
+	TreeNode current, last = null;
+	current = root; 
+		while(current != null) 
+		{
+			last = current; 
+			current = current.right;
+		}
+		return last;
+	}
+	
+	
+	public void inOrder(TreeNode root) {
+		
+		if(root!=null) {
+			inOrder(root.left);
+			System.out.print(root.data + " ");
+			inOrder(root.right);
+		}
+	}
+	
+	private void preOrder(TreeNode root)
+	{
+	if(root != null)
+	{
+	System.out.print(root.data + " ");
+	preOrder(root.left);
+	preOrder(root.right);
+	}
+	}
+	
+	private void postOrder(TreeNode root)
+	{
+	if(root != null)
+	{
+	postOrder(root.left);
+	postOrder(root.right);
+	System.out.print(root.data +" ");
+	}
+	}
+	
+	public void print() {
+		TreeNode current = root;
+		while(current!=null) {
+			System.out.println(current.data + " ");
+		}
+	}
+	
+	public boolean isEmpty() {
+		return  root == null;
+	}
+}
