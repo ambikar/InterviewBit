@@ -1,0 +1,57 @@
+package test.test1;
+
+import java.util.*;
+
+public class Solution {
+
+	public void maxSubArray(int[] input) {
+
+		HashSet<Integer> list1 = new HashSet<Integer>();
+		HashSet<Integer> list2 = new HashSet<Integer>();
+		HashMap<Integer, HashSet<Integer>> map = new HashMap<Integer, HashSet<Integer>>();
+		int max = 0;
+		for (int i = 0; i < input.length; i++) {
+			int sum = 0;
+			int sum1 = 0;
+			int j = 0;
+			while (j <= i) {
+
+				list1.add(input[j]);
+				sum += input[j];
+				if (sum > max) {
+					max = sum;
+				}
+
+				j++;
+			}
+
+			int k = i + 1;
+			while (k < input.length) {
+
+				list2.add(input[k]);
+
+				sum1 += input[k];
+				if (sum1 > max) {
+					max = sum1;
+				}
+				k++;
+			}
+			if (map.containsKey(sum)) {
+				break;
+			} else
+				map.put(sum, list1);
+			System.out.println("max is " + max);
+			System.out.println(map.get(max));
+
+		}
+		
+		
+	}
+
+	public static void main(String[] args) {
+		Solution sol = new Solution();
+		int[] input = { 1, 2, 5, -7, 2, 3 };
+		sol.maxSubArray(input);
+
+	}
+}
