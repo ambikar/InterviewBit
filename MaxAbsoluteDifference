@@ -1,0 +1,39 @@
+package test.test1;
+
+import java.util.*;
+
+public class Solution {
+	
+	public static void main(String args[]) {
+		Solution so = new Solution();
+		int[] input = {1,3,-1};
+		System.out.println(so.maxArr(input));
+	}
+    public int maxArr(int[] input) {
+    	
+		ArrayList<Integer> A = new ArrayList<Integer>();
+		for(int i=0; i< input.length; i++) {
+			A.add(input[i]);
+		}
+		
+        int maxSum = 0;
+
+        for(int i=1; i<=A.size()-1; i++){
+            for(int j=i+1; j<=A.size(); j++){
+                int tempSum = sum(A.get(i-1), A.get(j-1), i, j);
+
+                if(tempSum > maxSum) {
+                    maxSum = tempSum;
+                }
+            }
+        }
+        
+       
+
+        return maxSum;
+    }
+
+    public int sum(int Ai, int Aj, int i, int j) {
+        return Math.abs(Ai-Aj) + Math.abs(i-j);
+    }
+}
