@@ -1,0 +1,99 @@
+package test.test1;
+
+import java.util.*;
+
+public class Solution {
+	
+	public static void main(String args[]) {
+		try {
+		Solution so = new Solution();
+	
+		int[] input = { 1, 15, 25, 6, 7, 30, 40, 50};
+	
+		System.out.println(Arrays.toString(so.subUnsort(input)));}
+		catch(NullPointerException e) {
+			System.out.println("Array is already sorted");
+		}
+	}
+	
+	public int[] subUnsort(int[] A) {
+		int start =0, end =0;
+		int counter=0;
+		for(int i =0; i< A.length-1; i++) {
+			if(A[i]< A[i+1]) {
+				counter++;
+			}
+			if(counter==A.length-1) {
+				int[] op = {-1};
+				return op;
+			}
+		}
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		for(int i=0; i<A.length-1; i++) {
+			if( A[i] > A[i+1] ) {
+				start = i+1;
+				break;
+			}
+		}
+			for(int j=A.length-1; j>0; j-- ) {
+				if(A[j] < A[j-1]) {
+					end = j-1;
+					break;
+				}
+			}
+			
+			
+			System.out.println(start);
+			System.out.println(end);
+			
+			System.out.println("value is: " +A[start]);
+			System.out.println("end value is: " +A[end]);
+			
+			
+			int minstart = A[start], maxend = A[end];
+			
+			for(int m =start; m<=end; m++) {
+				minstart = Math.min(A[m], minstart);
+				maxend = Math.max(A[m],maxend);
+			}
+			
+			System.out.println("min: " + minstart);
+			System.out.println("max: " + maxend);
+			
+			int substart =0, subend =0;
+			for(int k = 0; k<start; k++) {
+				if(minstart < A[k]) {
+					substart=k;
+					break;
+				}
+			}
+			
+			for(int j=A.length-1; j>end; j--) {
+				if(maxend > A[j]) {
+					subend=j;
+					break;
+				}
+			}
+			
+			
+			System.out.println(substart);
+			System.out.println(subend);
+			
+			System.out.println("substart is: " + A[substart]);
+			System.out.println("sub end is: " +A[subend]);
+			
+		int[] output = new int[(subend-substart)+1];
+
+		while(substart <=subend) {
+			list.add(A[substart]);
+			substart++;
+		}
+		
+		for(int i =0; i< list.size(); i++) {
+			output[i] = list.get(i);
+		}
+		
+		return output;
+    }
+}
+
