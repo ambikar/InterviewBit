@@ -1,0 +1,51 @@
+package test.test1;
+
+import java.util.*;
+
+public class Solution {
+	
+	 ArrayList<Integer> output = new ArrayList<Integer>();
+	 
+	 public static void main(String[] args){
+	        int A = 1048574;
+	        
+	        int[] result = primesum(A);
+	        System.out.println(Arrays.toString(result));
+	    }
+	 
+
+	    public static int[] primesum(int A) {
+	        int[] arr = new int[2];
+	        if(A < 2)
+	            return arr;
+	        
+	        int first = 2;
+	        int second = A - first; 
+	        while(first <= second){
+	            second = A - first;
+	           
+	            if(isPrime(second) == true && isPrime(first)){
+	                arr[0] = first;
+	                arr[1] = second;
+	                return arr;
+	            }
+	            first++;
+	        }
+	        
+	        
+	        return arr;
+	    }
+	    
+	    public static boolean isPrime(int n){
+	        
+	        if(n == 2) return true;
+	        if(n % 2 == 0)
+	            return false;
+	        for(int i = 2; i < n; i++){
+	            if(n % i == 0)
+	                return false;
+	        }
+	        return true;
+	    }
+	   
+	}
