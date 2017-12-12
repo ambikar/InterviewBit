@@ -1,0 +1,87 @@
+package test.test1;
+
+public class Solution {
+
+	public static void main(String[] args) {
+		Solution sol  = new Solution();
+		int[] A = {0,0,0};
+		System.out.println("Distance is: " +sol.hammingDistance(A));
+	}
+	
+	public int hammingDistance(final int[] A) {
+		int sum =0;
+		
+		for(int i =0; i< A.length; i++) {
+			for(int j =0; j< A.length;j++) {
+				sum += this.distance(A[i], A[j]);
+			}
+		}	
+		return sum;
+    }
+	
+	public int distance(int a, int b) {
+		int distance =0;
+	
+		String one = Integer.toString(this.getBinary(a));
+		String two = Integer.toString(this.getBinary(b));
+
+		int maxLength =0; boolean maxString =false;
+		if(one.length()> two.length()) {
+			maxLength = one.length();
+			maxString =true;
+		}
+		else if(one.length() < two.length()){
+			maxLength = two.length();
+			maxString = false;
+		}
+		else if(one.length() == two.length()) {
+			maxLength = one.length();
+		}
+		
+		if(maxString == true) {
+			int diff = Math.abs(one.length()- two.length());
+			String diffStr = "";
+			
+			for(int i=0; i< diff; i++) {
+				diffStr +="0";
+			}
+			two = diffStr + two;	
+		}
+		else if(maxString == false){
+			int diff = Math.abs(one.length()- two.length());
+			String diffStr = "";
+			
+			for(int i=0; i< diff; i++) {
+				diffStr +="0";
+			}
+			one = diffStr + one;		
+		}
+
+		for(int i =0; i< maxLength; i++) {
+			if(one.charAt(i) != two.charAt(i)) {
+				distance++;
+			}
+		}
+		return distance;
+	}
+
+	public int getBinary(int n) {
+		if(n ==0)
+			return 0;
+		String binary = "";
+		int[] index = new int[200];
+		int op =0;
+		
+		while(n>0) {
+			index[op++] = n%2;
+			n = n/2;
+		}
+		
+		for(int i =op-1; i>=0; i--) {
+			binary += Integer.toString(index[i]);
+		}
+		
+		
+		return Integer.parseInt(binary);
+	}
+}
