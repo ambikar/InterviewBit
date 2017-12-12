@@ -1,0 +1,31 @@
+package test.test1;
+
+public class Solution {
+
+	public static void main(String[] args) {
+		Solution sol  = new Solution();
+		int A = -1;
+		System.out.println("Reverse is: " +sol.reverse(A));
+	}
+	
+	 public int reverse(int A) {
+		 String reverse = "";
+		 int output = 0;
+		 if(A==0)
+			 return 0;
+		 int num = Math.abs(A);
+		 while(num>0) {
+			 output = num%10;
+			 num = num/10;
+			 reverse+=output;
+		 }
+		 
+		 if(A<0) {
+			 return (0-(Integer.parseInt(reverse)));
+		 }
+		 else
+		 return Integer.parseInt(reverse);		 
+		 
+	    }
+	 
+}
