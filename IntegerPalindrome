@@ -1,0 +1,26 @@
+package test.test1;
+
+public class Solution {
+
+	public static void main(String[] args) {
+		Solution sol  = new Solution();
+		int A = 0;
+		System.out.println(sol.isPalindrome(A));
+	}
+	
+	 public boolean isPalindrome(int A) {
+		 int counter =0;
+		 
+		 String str = Integer.toString(A);
+		 
+		 for(int i=0; i< str.length()/2; i++) {
+			 if(str.charAt(i) == str.charAt(str.length()-i-1)) {
+				 counter++;
+			 }
+		 }
+		 if(counter == str.length()/2)
+			 return true;
+	 
+	 return false;
+	 }
+}
