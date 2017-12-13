@@ -1,0 +1,33 @@
+package test.test1;
+
+public class Solution {
+
+	public static void main(String[] args) {
+		Solution sol = new Solution();
+		System.out.println(sol.trailingZeroes(9247));
+	}
+	
+	 public int trailingZeroes(int A) {
+		 long l = (long)A;
+		 if(A== 0)
+			 return 0;
+		 
+		 int trailingZeroes = 0;
+		 
+		 int factorial = 1;
+		 
+		 for(int i = 1; i<= l; i++) {
+			 factorial = factorial * i;
+		 }
+		 		 
+		        // Keep dividing n by powers of 5 and update count
+		        while(A > 0){
+		        	trailingZeroes += A/5;
+		            A = A/5;
+		        }
+		 return trailingZeroes;
+	    }
+	 
+	 
+	 
+	}
