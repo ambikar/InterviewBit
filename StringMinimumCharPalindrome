@@ -1,64 +1,46 @@
 package test.test1;
 
-public class StringMinimumCharPalindrome {
+public class Solution{
 	
-		public static void main(String[] args) {
-			StringMinimumCharPalindrome sol = new StringMinimumCharPalindrome();
-		
-		System.out.println(sol.solve("eylfpbnpljvrvipyamyehwqnq"));
+	public static void main(String args[])throws Exception{
+
+		Solution mp = new Solution();
+		System.out.println(mp.solve("AACECAAAA"));
 		}
+	
+	
+public boolean isPalin(String str){
 
-		public int solve(String A) {
-			int counter = 0;
+	String revstr = new StringBuffer(str).reverse().toString();
+	  if(revstr.equals(str)){
+		return true;
+	  }
+	 return false;
+ }
 
-			if (A.equals("")) {
-				return 0;
-			}
-			String reverse = "";
-			for (int i = A.length() - 1; i >= 0; i--) {
-				reverse = reverse + A.charAt(i);
-			}
 
-			if (A.equals(reverse))
-				return 0;
-
-			String mid = ""; String str = "";
-
-			int i = 0;int index = 0;
-
-			while (i <=(A.length()-1)) {
-				mid = mid + A.charAt(i);
-				
-				str = this.reverse(mid);
-				
-				if (A.contains(str)) {
-					i++;
-					continue;
-				}
-				else {
-					break;
-				}		
-			}
-			str = str.substring(1);
-			
-			if (A.contains(str)) {
-					index = A.indexOf(str) + str.length();
-					counter = A.length() - index;
-				} 
-			else
-				counter = A.length() - 1;
-
-			return counter;
-
-		}
-		
-		public String reverse(String mid) {
-			String reverse = "";
-			for(int i = mid.length()-1; i >=0; i--) {
-				reverse = reverse + mid.charAt(i);
-			}
-			return reverse;
-		}
-
+ public int solve(String A) {
+ 
+	if(isPalin(A)){
+		return 0;
 	}	
+
+	String revA = new StringBuffer(A).reverse().toString();
+
+	for(int i=0; i<revA.length(); i++){
+		String prefix = revA.substring(0, i+1);
+		String newstr = prefix + A;
+		
+		
+		if(isPalin(newstr)){
+			
+			int len = newstr.length() - A.length();
+			return len;
+		}
+	}
+	
+	return A.length();
+ }
+
+}	
 
