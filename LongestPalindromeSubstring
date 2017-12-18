@@ -1,0 +1,73 @@
+package test.test1;
+
+import java.util.*;
+
+public class Solution {
+
+	ArrayList<String> list = new ArrayList<String>();
+
+	public static void main(String args[]) throws Exception {
+
+		Solution mp = new Solution();
+		System.out.println(mp.longestPalindrome("ab"));
+	}
+
+	public boolean isPalin(String str) {
+
+		String revstr = new StringBuffer(str).reverse().toString();
+		if (revstr.equals(str)) {
+			return true;
+		}
+		return false;
+	}
+
+	public String longestPalindrome(String A) {
+		String output = "";
+		if (A.length() == 0 || A.equals("")) {
+			return "0";
+		}
+
+		if (this.isPalin(A)) {
+			return A;
+		}
+
+		for (int i = 0; i < A.length(); i++) {
+			int startIndex = 0;
+			int endIndex = 0;
+
+			for (int j = A.length() - 1; j >= 0; j--) {
+				if (A.charAt(i) == A.charAt(j)) {
+					startIndex = i;
+					endIndex = j;
+
+					if (j < i)
+						continue;
+					output = A.substring(i, j + 1);
+
+					if (isPalin(output)) {
+						list.add(output);
+						
+					}
+				}
+			}
+		}
+		output = this.getLongest(list);
+
+		return output;
+	}
+
+	public String getLongest(ArrayList<String> list2) {
+		int length = 0;
+		String output = "";
+		for (int i = 0; i < list2.size(); i++) {
+			if (length < list2.get(i).length()) {
+				length = list2.get(i).length();
+				output = list2.get(i);
+
+			}
+		}
+		return output;
+
+	}
+
+}
