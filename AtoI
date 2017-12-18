@@ -1,0 +1,61 @@
+
+import java.util.*;
+
+public class Solution {
+//below method is for handling space
+
+	public static void main(String args[]) throws Exception {
+
+		Solution mp = new Solution();
+		System.out.println(mp.atoi("9 2704"));
+	}
+
+	public int atoi(String A) {
+		A.trim();
+		int output = 0,result = 0;
+		
+		char[] ch = A.toCharArray();
+		for(int i =0; i< ch.length; i++) {
+			output = (int)A.charAt(i) - '0';
+			result += output * (int)Math.pow(10, (A.length() - i - 1));			
+		}
+		
+		return result;
+	}
+
+
+public int atoi(final String A) {
+		int i = 0, length = A.length();
+		long num = 0;
+		boolean sign = true;
+
+		while (i < length && A.charAt(i) == ' ')		// get rid of white space
+			++i;
+		
+		if (i == A.length())	
+			return 0;	// just have white space
+		
+		if (A.charAt(i) == '-') {		// negative
+			sign = false; 
+			++i;
+		}
+		else if (A.charAt(i) == '+')	// positive
+			++i;
+
+		while (i < A.length() && A.charAt(i) >= '0' && A.charAt(i) <= '9') {
+			num = Math.abs(num);
+			num = num * 10 + (A.charAt(i) - '0');
+
+			if (!sign)
+				num = -num;
+			if (num > Integer.MAX_VALUE)
+				return Integer.MAX_VALUE;
+			else if (num < Integer.MIN_VALUE)
+				return Integer.MIN_VALUE;
+			++i;
+		}
+		return (int) num;
+	}
+  
+  
+  
