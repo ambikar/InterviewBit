@@ -1,0 +1,42 @@
+package test.test1;
+
+import java.util.*;
+
+public class Solution {
+
+	public static void main(String args[]) throws Exception {
+
+		Solution mp = new Solution();
+		System.out.println(mp.isNumber("3."));
+	}
+
+	public int isNumber(final String A) {
+		int num =0;
+		int dot =0;
+		int eCount = 0;
+		
+		if(A.equals("") || A.equals(null) || A.charAt(A.length()-1) == '.')
+			return 0;
+		for(int i =0; i< A.length(); i++) {
+			if(A.charAt(i) == '+' || A.charAt(i) == '-' || A.charAt(i) == ' ')
+	            continue;
+			
+			if((int)A.charAt(i) >=48 && (int)A.charAt(i) <=57) {
+				num++;
+			}
+			if(A.charAt(i ) == '.') {
+				dot++;
+			}
+			else if(A.charAt(i) == 'e'){
+               eCount++;
+            }         
+		}
+		if(dot >1 || eCount >1) 
+			return 0;
+		
+		if(num<1)
+			return 0;
+		
+		return 1;
+    }
+}
