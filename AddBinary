@@ -1,30 +1,48 @@
 package test.test1;
 
-public class AddBinary{
+import java.math.BigInteger;
+import java.util.*;
 
-	public static void main(String args[]) {
-		
-		long binary1 = 10110;
-		long binary2 =  1101;
-		
-		int i =0; int remainder =0;
-		int[] sum = new int[25];
-		
-		while(binary1!=0 || binary2 !=0) {
-			sum[i++] = (int)(binary1%10 + binary2%10 + remainder)%2;
-			remainder = (int) (binary1%10 + binary2%10 + remainder)/2;
-			binary1 = binary1/10;
-			binary2 = binary2/10;
-		}
-		if(remainder!=0) {
-			sum[i++] = remainder;
-		}
-		--i;	
-		while (i >= 0) {
-			System.out.print(sum[i--]);
-		}
-	}	
-}		
-	
+public class Solution {
 
-	
+	public static void main(String args[]) throws Exception {
+
+		Solution mp = new Solution();
+		System.out.println(mp.addBinary("1010110111001101101000", "1000011011000000111100110"));
+		 
+	    }
+	 public String addBinary(String A, String B) {
+		 String output = "";
+		 if(A.length()==0)
+			 return B;
+		 
+		 if (B.length()== 0) {
+			 return A;
+		 }
+		 if(A.length()==0 && B.length()==0)
+			 return output;
+		 
+		 long a = Long.parseLong(A);
+		 long b = Long.parseLong(B);
+		 
+		 long i =0, reminder =0;
+		 long[] sum = new long[200];
+		 
+		 while(a!=0 && b!=0) {
+			 sum[(int) i++] = ((a%10 + b%10 + reminder)%2);
+			 reminder = ((a%10 + b%10 + reminder)/2);
+			 a = a/10;
+			 b = b/10;
+		 }
+		 
+		 if (reminder != 0) {
+			   sum[(int) i++] = reminder;
+			  }
+		 --i;
+		 
+		  while (i >= 0) {
+		    output = output + sum[(int) i--];
+		  }
+		  return output;
+	    }
+}
