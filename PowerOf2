@@ -1,0 +1,39 @@
+package test.test1;
+
+import java.math.BigInteger;
+import java.util.*;
+
+public class Solution {
+
+	public static void main(String args[]) throws Exception {
+
+		Solution mp = new Solution();
+		System.out.println(mp.power("147573952589676412928"));
+		 
+	    }
+	
+	 public int power(String A) {	 
+		 if(A.equals(null) || A.length()==0) {
+			 return 0;
+		 }
+		 int x = Integer.parseInt(A);
+		
+		 if(x%2 ==1 || (x ==0))
+			 return 0;
+	
+		 if(((x&(x-1)) == 0)) {
+			 return 1;    
+		    }
+		 
+		 return 0;
+	    }
+	 
+	 public static int powerSolution(String A){
+	        java.math.BigInteger a = new java.math.BigInteger(A);
+	        if(a.compareTo(java.math.BigInteger.ONE)==0 || a.compareTo(java.math.BigInteger.ZERO)==0)return 0;
+	        for(int i=0;i<a.bitLength()-1;i++){
+	            if(a.testBit(i))return 0;
+	        }
+	        return a.testBit(a.bitLength()-1)?1:0;
+	    }
+}
