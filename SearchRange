@@ -1,0 +1,51 @@
+import java.util.ArrayList;
+
+
+public class Test {
+
+	public static void main(String[] args) {
+		Test test = new Test();
+		
+		ArrayList<Integer> a = new ArrayList<Integer>();
+		a.add(1);
+		
+		int target = 1;
+		System.out.println(test.searchInsert(a,target));
+	}
+				
+	private ArrayList<Integer> searchInsert(ArrayList<Integer> a, int b) {
+		ArrayList<Integer> result = new ArrayList<Integer>();
+		
+				int start =0;
+				int end = a.size()-1;
+		 		
+				if(!a.contains(b) || a.size()==0) {
+					result.add(-1);
+					result.add(-1);
+				}
+				
+		 		while(start<=end) {
+		 			int mid = (end + start)/2;
+		 		
+		 			if(a.get(mid) == b) {
+		 				
+		 				while(mid<=end) {
+		 					if(a.get(mid)== b) {
+		 						result.add(mid);			
+		 					}
+		 					mid++;
+		 					
+		 				}
+		 				break;
+		 			}
+		 			if(mid< a.size()-1 && a.get(mid)> b) {
+		 				end = mid-1;
+		 			}
+		 			if(mid< a.size()-1 && a.get(mid)< b) {
+		 				start = start+1;
+		 			}
+		 		}	
+	return result;
+			
+	}
+}
