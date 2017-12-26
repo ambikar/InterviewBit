@@ -1,0 +1,39 @@
+class Test {
+
+	public static void main(String[] args) {
+		Test test = new Test();
+		long bin = test.reverse(3);
+
+		System.out.println(bin);
+	}
+
+	public long reverse(long a) {
+		if (a == 0)
+			return 0;
+
+		String result = "", output = "";
+		long longValue = 0;
+
+		while (a > 0) {
+			result += a % 2;
+			a = a / 2;
+		}
+
+		for (int j = result.length() - 1; j >= 0; j--) {
+			output += result.charAt(j);
+		}
+
+		int i = output.length();
+		while (i <= 32) {
+			output = output + "0";
+			i++;
+		}
+		for (int k = 0; k < output.length(); k++) {
+			if (output.charAt(k) == '1') {
+				longValue += (long) (Math.pow(2, output.length() - 1 - k));
+			}
+		}
+		return longValue;
+	}
+
+}
