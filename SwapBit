@@ -1,0 +1,29 @@
+package test.test1;
+
+import java.util.ArrayList;
+
+public class Solution {
+
+	public static void main(String args[]) {
+		Solution sol = new Solution();
+		
+		System.out.println(sol.swap(100, 2,4));
+	}
+
+	public static int swap(int i, int pos1, int pos2) {
+
+	    int bit1 = (i >> pos1) & 1;// bit at pos1
+	    int bit2 = (i >> pos2) & 1;// bit at pos2
+
+	    if (bit1 == bit2)
+	        return i; // no need to swap since we change 1 with 1 or 0 with 0
+
+	    // Since we are here it means that we need to change 1->0 and 0->1.
+	    // To do this we can use XOR (^).
+	    // Lets create mask 000001010 with ones at specified positions
+	    int mask = (1 << pos1) | (1 << pos2);
+
+	    return i ^ mask;
+	}
+
+}
