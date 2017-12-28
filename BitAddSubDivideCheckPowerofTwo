@@ -1,0 +1,84 @@
+package test.test1;
+
+public class Solution {
+
+	public static void main(String args[]) {
+		Solution sol = new Solution();
+		
+		System.out.println(sol.naiveDivide(10,6));
+		System.out.println(sol.optimalDivide(10,6));
+		System.out.println(sol.Add(10,6));
+		System.out.println(sol.subtract(10,6));
+		System.out.println(sol.power(5,2));
+		
+	}
+	
+	
+	int Add(int x, int y){
+		if (y == 0)
+			return x;
+		else
+			return Add( x ^ y, (x & y) << 1);
+	}
+	
+	int subtract(int x, int y){
+	    if (y == 0)
+	        return x;
+	    return subtract(x ^ y, (~x & y) << 1);
+	}
+	
+	 boolean isPowerOfTwo (int x){
+	        return x!=0 && ((x&(x-1)) == 0);     
+	    }
+	     
+	 
+	 public int power(int x, int y) {
+		    int result = 1;
+		    long power = y;
+		    if (y < 0) {
+		      power = -power;
+		      x = 1 / x;
+		    }
+		    while (power != 0) {
+		      if ((power & 1) != 0) {
+		        result *= x;
+		      }
+		      x *= x;
+		      power >>>= 1;
+		
+		    }
+		    return result;
+		  }
+	
+	 
+		public int naiveDivide(int divident, int divisor) {
+			int quotient =0;
+			
+			while(divident >= divisor) {
+				divident = divident-divisor;
+				quotient++;
+			}		
+			return quotient;
+		}
+	 
+	int optimalDivide(int numerator, int denominator) { 
+		int mask = 1; 
+		int quotient = 0; 
+
+		while (denominator <= numerator) { 
+		denominator <<= 1; 
+		mask <<= 1; 
+		} 
+
+		while (mask > 1) { 
+		denominator >>= 1; 
+		mask >>= 1; 
+		if (numerator >= denominator) { 
+		numerator -= denominator; 
+		quotient |= mask; 
+		} 
+		} 
+
+		return quotient; 
+		}	
+}
