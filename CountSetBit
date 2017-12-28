@@ -1,0 +1,23 @@
+package test.test1;
+
+public class Solution {
+
+	public static void main(String args[]) {
+		Solution sol = new Solution();
+		
+		sol.decrement(100);	
+		
+	}
+
+	private void decrement(int i) {
+		int count =0;
+		while(i>0) {
+			i = i&(i-1);
+			count++;	
+		}
+		System.out.println(count);
+		
+	}
+	
+	
+}
