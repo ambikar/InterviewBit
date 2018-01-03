@@ -80,5 +80,85 @@ public class Solution {
 		} 
 
 		return quotient; 
-		}	
+		}
+		
+		int right(int x, int pos) {
+		return (x >> pos)&1;
+	}
+	private int add(int x, int y) {
+		while(y!=0) {
+			int carry = x &y;
+			x = x^y;
+			y = carry <<1;
+		}
+		
+		return x;
+		
+	}
+	
+	private int power(int x, int y) {
+		if(y==0) return x;
+		int result = 1;
+		for(int i =0; i <y; i++) {
+			result = mul(result, x); 
+		}
+		return result;
+	}
+
+	private int mul(int i, int j) {
+		int result =0;
+		while(j!=0) {
+			if((j&1) !=0) {
+				result +=i;
+			}
+			i = i<<1;
+			j = j>>1;
+		}
+		return result;
+	}
+	
+    public int divide(int p, int q) {
+        long dividend = (long)p;
+        long divisor = (long)q;
+        int result = 0;
+        int mask = 1;
+        if(divisor == 0)
+            return Integer.MAX_VALUE;
+        if(divisor == 1)
+            return (int)dividend;
+        while(divisor < dividend){
+            divisor = divisor << 1;
+            mask = mask << 1;
+        }
+        do{
+            if(dividend >= divisor){
+                dividend = dividend - divisor;
+                result = result + mask;
+            }
+            divisor = divisor >> 1;
+            mask = mask >> 1;               
+        }while(mask != 0);
+        
+        if (dividend == Integer.MIN_VALUE && divisor == -1)
+            return Integer.MAX_VALUE;
+            
+        if ((dividend > 0 && divisor > 0) || (dividend < 0 && divisor < 0))
+            return result;
+        else
+            return -result;
+   
+}
+    
+    private String reverseBinary(int x) { 	
+    		int b=0;
+        while (x!=0){
+        	 b<<=1;
+            b|=(x&1);
+            x>>=1;        
+        }
+        System.out.println(b);
+        return Integer.toBinaryString(b);
+    }
+    
+    
 }
