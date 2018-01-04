@@ -1,0 +1,38 @@
+package test.test1;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+
+public class Solution {
+
+	public static void main(String args[]) {
+		Solution sol = new Solution();
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		
+		list.add(2);
+		list.add(3);
+		list.add(5);
+		list.add(5);
+		list.add(7);
+		list.add(11);
+		list.add(11);
+		list.add(11);
+		list.add(13);
+		
+		System.out.println(sol.deleteDuplicates(list));
+    }
+
+		  public int deleteDuplicates(ArrayList<Integer> A) {
+		    if (A.isEmpty()) {
+		      return 0;
+		    }
+
+		    int writeIndex = 1;
+		    for (int i = 1; i < A.size(); ++i) {
+		      if (!A.get(writeIndex - 1).equals(A.get(i))) {
+		        A.set(writeIndex++, A.get(i));
+		      }
+		    }
+		    return writeIndex;
+		  }
+	}
