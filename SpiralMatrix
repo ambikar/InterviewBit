@@ -1,0 +1,90 @@
+package test.test1;
+
+public class Solution {
+
+	public static final int X_SIZE = 4;
+	public static final int Y_SIZE = 4;
+
+	public static void main(String[] args) {
+		
+	    int[][] array = new int[X_SIZE][Y_SIZE];
+
+	    for(int i = 0; i < X_SIZE; i++){
+	        for (int j = 0; j < Y_SIZE; j++){
+	            array[i][j] = i * X_SIZE + (j + 1);
+	            System.out.print(array[i][j] + " ");
+	        } 
+	        System.out.println();
+	    }
+
+	    System.out.println("************");
+	    System.out.println("Spiral");       
+
+	    spiralMatrix(X_SIZE, Y_SIZE, array);
+	}
+
+	public static void spiralPrint(int xSize, int ySize, int matrix[][]){
+	    int i, x = 0, y = 0;
+	    xSize--;  ySize--;      
+
+	    while(x <= xSize && y <= ySize){
+	    	// print the first row
+	        for(i = y; i <= ySize; i++) {
+	            System.out.print(matrix[x][i]+ " ");
+	        }           
+	        x++;
+
+	        //print last column
+	        for(i = x; i <= xSize; i++) {
+	            System.out.print(matrix[i][ySize] + " ");
+	        }
+	        ySize--;
+
+	        //print last row
+	        for(i = ySize; i >= y; i--) {
+	                System.out.print(matrix[xSize][i] + " ");
+	        }
+	        xSize--;
+
+	        // print first column
+	        for(i = xSize; i >= x; i--) {
+	            System.out.print(matrix[i][y] + " ");
+	        }
+	        y++;
+	    }
+	}
+	
+	public static void spiralMatrix(int xSize, int ySize, int[][] matrix) {
+		int i=0,x =0,y =0;
+		xSize--; ySize--;
+		
+		while(x<= xSize && y <= ySize) {
+			
+			// print the first row
+			for(i = y; i<= ySize; i++) {
+				System.out.print(matrix[x][i] + " ");
+			}
+			x++;
+			
+			//print last column
+			for(i = x; i<= xSize; i++) {
+				System.out.print(matrix[i][ySize] + " ");
+			}
+			ySize--;
+			
+			//print last row
+			for(i = ySize; i >=y; i--) {
+				System.out.print(matrix[xSize][i] + " ");
+			}
+			xSize--;
+			
+			for(i = xSize; i>=x; i--) {
+				System.out.print(matrix[i][y] + " ");
+			}
+			y++;
+			
+		}
+	}
+	   
+	}
+	
