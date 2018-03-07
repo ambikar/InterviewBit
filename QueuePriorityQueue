@@ -1,0 +1,96 @@
+package test.test1;
+
+public class Solution {
+	public static void main(String[] args) {
+		Solution list = new Solution();
+		
+		Queue theQueue = new Queue(15); // queue holds 5 items
+		theQueue.priorityInsert(10); // insert 4 items
+		theQueue.priorityInsert(200);
+		theQueue.priorityInsert(130);
+		theQueue.priorityInsert(400);
+		//theQueue.delete(); // remove 3 items
+		//theQueue.delete(); // (10, 20, 30)
+		//theQueue.delete();
+		theQueue.priorityInsert(50); // insert 4 more items
+		theQueue.priorityInsert(609); // (wraps around)
+		theQueue.priorityInsert(707);
+		theQueue.priorityInsert(81);
+		while( !theQueue.isEmpty() ) // remove and display
+		{ // all items
+		
+		long n = theQueue.delete(); // (40, 50, 60, 70, 80)
+	System.out.print(n);
+		System.out.print(" ");
+		
+	}
+}
+}
+
+class Queue{
+	
+	int[] val;
+	int maxSize;
+	int front;
+	int rear;
+	int nItems;
+	
+	Queue(int size){
+		this.maxSize = size;
+		val = new int[maxSize];
+		front = 0;
+		rear = -1;
+		nItems = 0;
+	}
+	
+	void priorityInsert(int d) {
+		int j =0;
+		
+		if(nItems ==0) {
+			val[nItems++] = d;
+		}
+		else {
+			for(j = nItems-1; j >= 0; j--) {
+				if(val[j] > d) {
+					val[j+1] = val[j];
+				}
+				else break;
+			}
+			
+			val[j+1] = d;
+			nItems++;
+		}
+	}
+	
+	void insert(int data) {
+		//wrapping for circular que
+		if(rear == maxSize-1) {
+			rear = -1;
+		}
+		val[++rear] = data;
+		nItems++;
+	}
+	
+	int delete() {
+		//check if the queue is empty
+		
+		int temp = val[front++];
+		if(front == maxSize) {
+			front = 0;
+		}
+		nItems--;
+		return temp;
+	}
+	
+	int peak() {
+		return val[front];
+	}
+	
+	boolean isEmpty() {
+		return (nItems == 0);
+	}
+	
+	boolean isFull() {
+		return( nItems == maxSize);
+	}
+}
