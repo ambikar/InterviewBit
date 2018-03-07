@@ -1,0 +1,75 @@
+package test.test1;
+
+class node1 {
+	int val;
+	node1 next;
+
+	public node1(int val) {
+		this.val = val;
+	}
+}
+
+public class Solution {
+	node1 head;
+	node1 sorted;
+
+	void push(int val) {
+		node1 newnode1 = new node1(val);
+		newnode1.next = head;
+		head = newnode1;
+	}
+
+
+	private void insertionSort(node1 headref) {
+		
+		sorted = null;
+		node1 current = headref;
+		while(current!=null) {
+			node1 nt = current.next;
+			sort(current);
+			current =nt;
+		}
+		head = sorted;
+		
+	}
+
+	private void sort(node1 newNode) {
+		if(sorted ==null || sorted.val >= newNode.val) {
+			newNode.next = sorted;
+			sorted = newNode;
+		}
+		else {
+			node1 current = sorted;
+			while(sorted!=null &&  newNode.val > current.next.val) {
+				current = current.next;
+			}
+			newNode.next = current.next;
+			current.next = newNode;
+
+		}
+	}
+
+
+	/* Function to print linked list */
+	void printlist(node1 head) {
+		while (head != null) {
+			System.out.print(head.val + " ");
+			head = head.next;
+		}
+	}
+
+	// Driver program to test above functions
+	public static void main(String[] args) {
+		Solution list = new Solution();
+		list.push(5);
+		list.push(20);
+		list.push(4);
+		list.push(3);
+		list.push(30);
+		System.out.println("Linked List before Sorting..");
+		list.printlist(list.head);
+		list.insertionSort(list.head);
+		System.out.println("\nLinkedList After sorting");
+		list.printlist(list.head);
+	}
+}
