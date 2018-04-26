@@ -21,6 +21,38 @@ import java.util.*;
 	        else
 	            return ans;
 	}
+	
+	 public float parseFloatFromString(String input)
+	    {
+	    	boolean isNeg = false;
+	    	if(input.charAt(0) == '-'){
+            input = input.substring(1, input.length());
+            isNeg = true;
+        }
+	        boolean seenDot = false;
+	        float divisor = 1.0f;
+	        char c;
+	        float ret = 0.0f;
+
+	        for (int i = 0; i < input.length(); i++) {
+	            c = input.charAt(i);
+	            if (c == '.') {
+	                seenDot = true;
+	                continue;
+	            }
+	            ret *= 10.0f;
+	            ret += (float) (c - '0');
+	            if (seenDot)
+	                divisor *= 10.0f;
+	        }
+
+	        ret /= divisor;
+	        if(isNeg)
+	            return ret = 0-ret;
+	        else
+	        return ret;
+	    }
+	    
 	    
 		public static void main(String args[]) throws Exception {
 
