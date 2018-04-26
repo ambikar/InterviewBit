@@ -1,0 +1,31 @@
+package test.test1;
+
+import java.util.*;
+
+	class Solution {
+	    public int myAtoi(String str) {
+	        boolean isNeg = false;
+	        if(str.charAt(0) == '-'){
+	            str = str.substring(1, str.length());
+	            isNeg = true;
+	        }
+	        int ans =0; int fact = 1;
+	        
+	        for(int i = str.length()-1; i >=0; i--) {
+	        	ans = ans + (str.charAt(i) - '0') * fact;
+	        	fact  = fact * 10;
+	        }
+	       
+	        if(isNeg)
+	            return ans = 0-ans;
+	        else
+	            return ans;
+	}
+	    
+		public static void main(String args[]) throws Exception {
+
+			Solution mp = new Solution();
+			System.out.print(mp.myAtoi("-343"));
+		}
+  
+}
