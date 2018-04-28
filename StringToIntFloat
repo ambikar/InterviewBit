@@ -13,6 +13,8 @@ import java.util.*;
 	        
 	        for(int i = str.length()-1; i >=0; i--) {
 	        	ans = ans + (str.charAt(i) - '0') * fact;
+	            System.out.println(ans);
+
 	        	fact  = fact * 10;
 	        }
 	       
@@ -21,8 +23,8 @@ import java.util.*;
 	        else
 	            return ans;
 	}
-	
-	 public float parseFloatFromString(String input)
+	    
+	    public float parseFloatFromString(String input)
 	    {
 	    	boolean isNeg = false;
 	    	if(input.charAt(0) == '-'){
@@ -32,7 +34,7 @@ import java.util.*;
 	        boolean seenDot = false;
 	        float divisor = 1.0f;
 	        char c;
-	        float ret = 0.0f;
+	        float ans = 0.0f;
 
 	        for (int i = 0; i < input.length(); i++) {
 	            c = input.charAt(i);
@@ -40,24 +42,24 @@ import java.util.*;
 	                seenDot = true;
 	                continue;
 	            }
-	            ret *= 10.0f;
-	            ret += (float) (c - '0');
+	            ans = ans * 10.0f;
+	            ans += (float) (c - '0');
+	            System.out.println(ans);
 	            if (seenDot)
 	                divisor *= 10.0f;
 	        }
 
-	        ret /= divisor;
+	        ans /= divisor;
 	        if(isNeg)
-	            return ret = 0-ret;
+	            return 0-ans;
 	        else
-	        return ret;
+	        return ans;
 	    }
-	    
 	    
 		public static void main(String args[]) throws Exception {
 
 			Solution mp = new Solution();
-			System.out.print(mp.myAtoi("-343"));
+			System.out.print(mp.parseFloatFromString("956.77"));
 		}
   
 }
