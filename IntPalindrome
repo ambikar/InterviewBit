@@ -1,0 +1,33 @@
+package test.test1;
+
+	class Solution {
+		
+	    public boolean reverse(int i) {
+	    	if(i >=0 && i <=9){
+	    		return true;
+	    	}
+	    	boolean result = false;
+	    	int rev = 0; int fact = 1;
+	    	int x = i;
+	    	
+	    	while(i !=0) {
+	    		rev += (i %10) * fact;
+	    		fact = fact * 10;
+	    		i = i/10;
+	    	}
+	    	if(rev == x)
+	    		result = true;
+	    		
+	    		return result;
+	    	
+	       
+	}
+	    
+	   
+		public static void main(String args[]) throws Exception {
+
+			Solution mp = new Solution();
+			System.out.print(mp.reverse(121));
+		}
+  
+}
