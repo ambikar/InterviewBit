@@ -1,0 +1,141 @@
+package test.test1;
+
+import java.util.Stack;
+
+class Node {
+
+	int data;
+	Node next;
+
+	Node(int data) {
+		this.data = data;
+	}
+
+	void print() {
+		System.out.println(this.data + " ");
+	}
+
+}
+
+public class List {
+	Node first;
+
+	List() {
+		first = null;
+	}
+	
+	public static void main(String[] args) {
+		List list = new List();
+		list.insert(123);
+		list.insert(12);
+		list.insert(3);
+		list.insert(12);
+		list.insert(123);
+
+		list.println();
+		System.out.println();
+
+		list.reverse(list);
+		
+		System.out.println("Is Palindrome: " +list.isPalindrome(list.first));
+
+		System.out.println();
+
+	}
+	
+	public boolean isPalindrome(Node n) {
+		Node curr = n;
+		Node runner = n;
+		Stack<Integer> stack = new Stack<Integer>();
+		
+		while(runner !=null && runner.next!= null) {
+			stack.push(runner.data);
+			curr = curr.next;
+			runner =curr.next.next;
+		}
+
+	    if (runner != null) curr = curr.next;
+
+		while(curr !=null) {
+			if(stack.pop().intValue() != curr.data)
+				return false;
+			curr = curr.next;
+		}
+		return true;
+	}
+	public boolean palindrome(Node n) {
+	    Node curr = n;
+	    Node runner = n;
+	    Stack<Integer> stack = new Stack<Integer>();
+	 
+	    while (runner != null && runner.next != null) {
+	        stack.push(curr.data);
+	        curr = curr.next;
+	        runner = runner.next.next;
+	    }
+	 
+	    if (runner != null) curr = curr.next;
+	 
+	    while (curr != null) {
+	        if (stack.pop().intValue() != curr.data) return false;
+	        curr = curr.next;
+	    }
+	 
+	    return true;
+	}
+
+	public Node reverse(List list) {
+		Node current = list.first;
+		Node prev = null;
+		Node next = null;
+
+		while (current != null) {
+			next = current.next;
+			current.next = prev;
+			prev = current;
+			current = next;
+		}
+		list.first = prev;
+
+		Node current1 = list.first;
+
+		while (current1 != null) {
+			System.out.print( current1.data + " ");
+			current1 = current1.next;
+		}
+		return current1;
+	}
+
+	void insert(int data) {
+		Node newNode = new Node(data);
+		newNode.next = first;
+		first = newNode;
+	}
+
+	boolean isEmpty() {
+		return first == null;
+	}
+
+	Node find(int key) {
+		Node current = first;
+			while (current.data != key) {
+				if (current.next == null) {
+					System.out.println("The key " + key + " not found");
+					break;
+			}
+				else
+					current = current.next;
+			}
+		return current;
+	}
+
+	void println() {
+		Node current = first;
+
+		while (current != null) {
+			System.out.print(current.data + " ");
+			current = current.next;
+		}
+	}
+
+}
