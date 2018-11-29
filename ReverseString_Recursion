@@ -1,0 +1,21 @@
+package test.test1;
+
+public class Solution {
+
+	public static void main(String[] args) {
+		Solution list = new Solution();
+
+		list.reverse("ambika");
+
+	}
+
+	private String reverse(String str) {
+		if (str.isEmpty()) {
+			return "";
+		}
+		System.out.print(str.charAt(str.length() - 1));
+
+		return reverse(str.substring(0, str.length() - 1));
+
+	}
+}
