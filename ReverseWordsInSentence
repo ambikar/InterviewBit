@@ -1,0 +1,33 @@
+package test.test1;
+
+public class Solution {
+
+	public static void main(String[] args) {
+		Solution sol = new Solution();
+		sol.reverseWords1("This is awesome");
+	}
+	
+	private void reverseWords1(String sentence) {
+		String Rword = "";
+		String newSentence = "";
+		
+	for(int i=0; i< sentence.length(); i++){
+        if(sentence.charAt(i) == ' ') //if it reaches a space its a word
+        {
+           Rword = Rword+sentence.charAt(i);  //add the current space
+           newSentence = newSentence+Rword ; //give the reversed word to the new sentence
+           Rword = ""; // then empty the word
+        }else{
+               Rword = sentence.charAt(i)+Rword ; //while its not a space, reverse.  
+             }
+   }
+     newSentence = newSentence+Rword;
+     
+     System.out.println(newSentence);// the last char might not be a space to so the first 
+	}                             
+ 
+}
+
+
+//1. check char - if char - add the new char on back
+//2. check space - if space - add the new chars in front
