@@ -1,0 +1,36 @@
+package test.test1;
+
+public class Solution {
+
+	public static void main(String[] args) {
+		Solution sol = new Solution();
+		sol.getPerm("", "abc");
+		sol.combine("", "abc");
+	}
+
+	private void getPerm(String prefix, String str) {
+		
+
+		for (StackTraceElement ste : Thread.currentThread().getStackTrace()) {
+		    System.out.println(ste);
+		}
+		if (str.length() == 0)
+			System.out.println(prefix);
+
+		for (int i = 0; i < str.length(); i++) {
+			getPerm(prefix + str.charAt(i), 
+					str.substring(0, i) + str.substring(i + 1));
+
+		}
+
+	}
+
+
+	private void combine(String prefix, String str) {
+			System.out.println(prefix);
+		
+		for (int i = 0; i < str.length(); i++)
+			combine(prefix + str.charAt(i), str.substring(i + 1));
+	}
+
+}
