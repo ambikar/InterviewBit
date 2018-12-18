@@ -1,0 +1,43 @@
+package test.test1;
+
+class Solution {
+
+	public static void main(String args[]) {
+		Solution sol = new Solution();
+		System.out.println(sol.binToDec(1000));
+		System.out.println(sol.decToBin(8));
+
+	}
+
+	private int binToDec(int num) {
+
+		int i = 0, total =0;
+		int pow =0;
+		
+		while(num !=0) {
+		i = num%10;
+		total += i* Math.pow(2, pow);
+		pow++;
+		num =num/10;
+		
+		}
+		return total;
+
+	}
+
+
+
+	private int decToBin(int i) {
+		
+		String str = ""; 
+		int k=0;
+		
+		while(i!=0) {
+			k = i%2;
+			str = k + str;
+			i = i/2;
+		}
+		return Integer.parseInt(str);
+		
+	}
+}
