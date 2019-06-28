@@ -1,74 +1,73 @@
-package test.test1;
+package Test.practice;
 
-import java.util.Arrays;
+import java.util.*;
 
-public class MergeSort{
-
-	public static void main(String args[]) {
-		MergeSort sort = new MergeSort();
-		int[] array = {13,55,44,23,1,87,21};
-		
-		sort.sort(array, 0, array.length-1);
-		
-		for(int i =0; i< array.length; i++) {
-			System.out.print(array[i] + " ");
-		}
-	}
+public class Practice {
 	
-	private void sort(int[] array, int left, int right) {
-		
-	if(left < right) {
-		int mid = (right + left)/2;
+	 
+	    public static void main(String[] args) {
+	    	Practice p = new Practice();
+	        int arr[] = {12, 11, -313, 5, 6, 7}; 
+	        
+	        p.merge(arr, 0, arr.length-1);
+	        
+	        System.out.print(Arrays.toString(arr));
+	    }
+	    
+	    
+	    
+	    private void merge(int[] arr, int start, int end) {
+	    	
+	    	if(start< end) {
+	    		int mid = (end+start)/2;
+	    		
+	    		merge(arr, start, mid);
+	    		merge(arr, mid+1, end);
+	    		
+	    		sort(arr, start, mid, end);
+	    	}
+	    }
 
-		sort(array, left, mid);
-		sort(array, mid+1, right);
-		merge(array, left, mid, right);
-	}
-	}
-	
-	private void merge(int[] array, int left, int mid, int right) {
-		int[] array1 = new int[(mid-left) +1];
-		int[] array2 = new int[right-mid];
-		
-		for(int i = 0; i< array1.length; i++) {
-			array1[i] = array[left+ i];
-		}
-		
-		for(int j = 0; j< array2.length; j++) {
-			array2[j] = array[(mid+1) + j];
+
+
+		private void sort(int[] arr, int start, int mid, int end) {
+
+			int[] left = new int[mid-start+1];
+			int[] right = new int[end - mid];
 			
-		}
-	
-		int k = left; int i=0; int j=0;
-		
-		while(i< array1.length && j< array2.length) {
-			if(array1[i]<= array2[j]) {
-				array[k] = array1[i];
-				i++;
+			//copy data to array
+			for(int i=0; i<left.length; i++) {
+				left[i] = arr[start+i];
 			}
-			else {
-				array[k] = array2[j];
+			
+			for(int i=0; i<right.length; i++) {
+				right[i] = arr[mid+1+i];
+			}
+			
+			int i =0, j=0, k = start;
+			while(i< left.length && j < right.length) {
+				
+				if(left[i] < right[j]) {
+					arr[k] = left[i];
+					i++;
+				}
+				else {
+					arr[k] = right[j];
+					j++;
+				}
+				k++;
+			}
+			while(i< left.length) {
+				arr[k] = left[i];
+					i++;
+					k++;
+			}
+			
+			while(j< right.length) {
+				arr[k] = right[j];
 				j++;
+				k++;
 			}
-			k++;
 		}
-		
-		while(i< array1.length) {
-			array[k] = array1[i];
-			i++;
-			k++;
-		}
-		
-		
-		while(j< array2.length) {
-			array[k] = array2[j];
-			j++;
-			k++;
-		}
-		
-	}
-	
-	}		
-	
-
+}
 	
