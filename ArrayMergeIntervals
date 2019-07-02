@@ -1,74 +1,80 @@
-package test.test1;
+package Test.practice;
 
 import java.util.*;
 
-public class Solution {
+public class Practice {
 
-	//[1,3],[6,9] insert and merge [2,5] would result in [1,5],[6,9]
-	
 	public static void main(String args[]) {
-		Solution so = new Solution();
+		Practice test = new Practice();
+
 		ArrayList<Interval> list = new ArrayList<Interval>();
-		list.add(new Interval(1,2));
-		list.add(new Interval(3,5));
-		list.add(new Interval(6,7));
-		list.add(new Interval(8,10));
-		list.add(new Interval(12,16));
-		
-		Interval insert = new Interval(4,9);
-		System.out.println(so.insert(list, insert).toString());
-		
+
+		list.add(new Interval(1, 3));
+		list.add(new Interval(2, 4));
+		list.add(new Interval(5, 7));
+		list.add(new Interval(6, 8));
+
+		test.getMerge(list);
+
 	}
-	
-	public ArrayList<Interval> insert(ArrayList<Interval> intervals, Interval newInterval) {
-        ArrayList<Interval> result = new ArrayList<>();
-        for (int i = 0; i < intervals.size(); i++) {
-            Interval interval = intervals.get(i);
-            if (interval.end < newInterval.start) {   
-                result.add(interval);
-            } else if (newInterval.end < interval.start) {
-              
-                result.add(newInterval);
-                result.addAll(intervals.subList(i, intervals.size()));
-                return result;
-            } else {
-                int start = Math.min(newInterval.start, interval.start);
-                int end = Math.max(newInterval.end, interval.end);
-                newInterval.start = start;
-                newInterval.end = end;
-            }
-        }
-        result.add(newInterval);
-        return result;
-        
-	} 
+
+	private void getMerge(ArrayList<Interval> list) {
+
+		Collections.sort(list, new IComparator());
+		
+		Interval first = list.get(0);
+		int start = first.getStart();
+		int end = first.getEnd();
+
+		ArrayList<Interval> result = new ArrayList<Interval>();
+
+		for (int i = 1; i < list.size(); i++) {
+			Interval current = list.get(i);
+			if (current.getStart() <= end) {
+				end = Math.max(current.getEnd(), end);
+			} else {
+				result.add(new Interval(start, end));
+				start = current.getStart();
+				end = current.getEnd();
+			}
+		}
+		result.add(new Interval(start, end));
+
+		for (Interval i : result) {
+			int st = i.start;
+			int e = i.end;
+			i.toString(st, e);
+		}
+	}
+
 }
 
 class Interval {
-    int start;
-    int end;
 
-    Interval() {
-        start = 0;
-        end = 0;
-    }
+	int start;
+	int end;
 
-    Interval(int s, int e) 
-    {
-        start = s;
-        end = e;
-    }
-    
-    public int getStart() {
-    	return start;
-    }
-    
-    public int getEnd() {
-    	return end;
-    }
-    
-    @Override
-    public String toString() {
-    		return "(" +start + ","+ end + ")";
-    }
+	Interval(int start, int end) {
+		this.start = start;
+		this.end = end;
+
+	}
+
+	public int getStart() {
+		return start;
+	}
+
+	public int getEnd() {
+		return end;
+	}
+
+	public void toString(int start, int end) {
+		System.out.print("[" + start + "," + end + "]");
+	}
+}
+
+class IComparator implements Comparator<Interval> {
+	public int compare(Interval i1, Interval i2) {
+		return i1.start - i2.start;
+	}
 }
