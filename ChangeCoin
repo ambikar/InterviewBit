@@ -1,0 +1,31 @@
+package Test.practice;
+
+import java.util.Arrays;
+
+public class Practice {
+
+
+	public static void main (String[] args)
+    {
+        Practice p = new Practice(); 
+		int coins[] = {1, 2, 5};
+		int amount = 12;
+		
+		p.getCombinations(amount, coins);
+}
+	
+	private void getCombinations(int amount, int[] coins) {
+		int[] comb  = new int[amount+1];
+		
+		comb[0] =1;
+		for(int coin: coins) {
+			for(int i =1; i< comb.length; i++) {
+				if(i>=coin ) {
+					comb[i] = comb[i] + comb[i-coin];
+				}
+			}
+		}
+		
+		System.out.print(comb[amount]);
+	}
+}
